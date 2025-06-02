@@ -1,0 +1,7 @@
+FROM frontend:dependencies
+
+WORKDIR /app
+COPY ./app/src /app/src
+COPY ./app/public /app/public
+
+CMD yarn start

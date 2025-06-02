@@ -1,0 +1,22 @@
+{
+    "images": [
+      {
+        "name": "News_One.1.json",
+        "src_lang": "chinese",
+        "dst_lang": "english",
+        "image_type": "text",
+        "metadata": {
+          "source_document": "News_One.1.json"
+        }
+      },
+      {
+        "name": "News_One.2.json",
+        "src_lang": "chinese",
+        "dst_lang": "english",
+        "image_type": "text",
+        "metadata": {
+          "source_document": "News_One.2.json"
+        }
+      }
+    ]
+  }

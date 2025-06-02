@@ -1,0 +1,66 @@
+version: "3"
+services:
+  hieroglyph-chi:
+    image: hieroglyph-server:latest
+    container_name: hieroglyph-chi
+    environment:
+      MODEL_DIR: "/models"
+      DATA_DIR: "/data"
+      INIT_LANG: "chinese"
+      INIT_PORT: "${CHINESE_PORT}"
+      LOG_LEVEL: "DEBUG"
+      WORKER_COUNT: 1
+      TESSDATA_PREFIX: /usr/share/tesseract-ocr/5/tessdata
+      MONGO_USR: "${DATABASE_USER}"
+      MONGO_PWD: "${DATABASE_PASSWORD}"
+      MONGO_IP: "hieroglyph-database"
+      MONGO_PORT: "${DATABASE_PORT}"
+    volumes:
+      - ./models:/models:ro
+    ports:
+      - "${CHINESE_PORT}:${CHINESE_PORT}"
+    command: "python /opt/app/src/hieroglyph/main.py"
+
+  hieroglyph-rus:
+    image: hieroglyph-server:latest
+    container_name: hieroglyph-rus
+    environment:
+      MODEL_DIR: "/models"
+      DATA_DIR: "/data"
+      INIT_LANG: "russian"
+      INIT_PORT: "${RUSSIAN_PORT}"
+      LOG_LEVEL: "DEBUG"
+      WORKER_COUNT: 1
+      TESSDATA_PREFIX: /usr/share/tesseract-ocr/5/tessdata
+      MONGO_USR: "${DATABASE_USER}"
+      MONGO_PWD: "${DATABASE_PASSWORD}"
+      MONGO_IP: "hieroglyph-database"
+      MONGO_PORT: "${DATABASE_PORT}"
+    volumes:
+      - ./models:/models:ro
+    ports:
+      - "${RUSSIAN_PORT}:${RUSSIAN_PORT}"
+    command: "python /opt/app/src/hieroglyph/main.py"
+
+  hieroglyph-frontend:
+    image: hieroglyph-frontend:latest 
+    environment:
+      PORT: "${FRONTEND_PORT}"
+      REACT_APP_CHINESE_BACKEND: "http://${BACKEND_HOST}:${CHINESE_PORT}"
+      REACT_APP_RUSSIAN_BACKEND: "http://${BACKEND_HOST}:${RUSSIAN_PORT}"
+      BROWSER: none
+    ports:
+      - "${FRONTEND_PORT}:${FRONTEND_PORT}"
+    command: "yarn start"
+
+  hieroglyph-database:
+    image: mongo:latest
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: "${DATABASE_USER}"
+      MONGO_INITDB_ROOT_PASSWORD: "${DATABASE_PASSWORD}"
+    volumes:
+      - hieroglyph-database-data:/data/db
+
+volumes:
+  hieroglyph-database-data:
+

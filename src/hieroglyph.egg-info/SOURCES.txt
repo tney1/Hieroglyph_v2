@@ -1,0 +1,8 @@
+LICENSE.md
+README.md
+setup.py
+src/hieroglyph.egg-info/PKG-INFO
+src/hieroglyph.egg-info/SOURCES.txt
+src/hieroglyph.egg-info/dependency_links.txt
+src/hieroglyph.egg-info/requires.txt
+src/hieroglyph.egg-info/top_level.txt

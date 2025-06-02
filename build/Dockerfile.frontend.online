@@ -1,0 +1,18 @@
+FROM node:20
+
+RUN npm install -g npm@latest
+
+WORKDIR /app/
+
+COPY ./app/package.json /app/
+COPY ./app/yarn.lock /app/
+COPY ./app/config /app/config
+
+RUN yarn global add serve react-scripts
+RUN yarn install --production
+RUN yarn add webpack-dev-server@latest --dev
+
+RUN npx update-browserslist-db@latest
+
+
+

@@ -1,0 +1,706 @@
+[
+ {
+  "text": "中文网首页",
+  "confidence": 93,
+  "bounding_box": [
+   857,
+   234,
+   257,
+   76
+  ],
+  "translation": "First page of the Chinese Internet"
+ },
+ {
+  "text": "时政",
+  "confidence": 92,
+  "bounding_box": [
+   1209,
+   234,
+   122,
+   77
+  ],
+  "translation": "Conscientious."
+ },
+ {
+  "text": "資訊",
+  "confidence": 96,
+  "bounding_box": [
+   1425,
+   234,
+   120,
+   77
+  ],
+  "translation": "Information"
+ },
+ {
+  "text": "C财经",
+  "confidence": 92,
+  "bounding_box": [
+   1636,
+   234,
+   157,
+   77
+  ],
+  "translation": "C Finance"
+ },
+ {
+  "text": "生活",
+  "confidence": 95,
+  "bounding_box": [
+   1889,
+   234,
+   119,
+   77
+  ],
+  "translation": "Life."
+ },
+ {
+  "text": "视频",
+  "confidence": 95,
+  "bounding_box": [
+   2101,
+   234,
+   121,
+   76
+  ],
+  "translation": "Video"
+ },
+ {
+  "text": "专栏",
+  "confidence": 77,
+  "bounding_box": [
+   2326,
+   234,
+   110,
+   77
+  ],
+  "translation": "Column"
+ },
+ {
+  "text": "原创",
+  "confidence": 88,
+  "bounding_box": [
+   2746,
+   234,
+   118,
+   77
+  ],
+  "translation": "Original"
+ },
+ {
+  "text": "观天下",
+  "confidence": 72,
+  "bounding_box": [
+   2957,
+   235,
+   169,
+   75
+  ],
+  "translation": "♪ Watching the world ♪"
+ },
+ {
+  "text": "双语",
+  "confidence": 93,
+  "bounding_box": [
+   2533,
+   236,
+   118,
+   74
+  ],
+  "translation": "Bilingual"
+ },
+ {
+  "text": "注册",
+  "confidence": 96,
+  "bounding_box": [
+   3930,
+   237,
+   127,
+   80
+  ],
+  "translation": "Registration"
+ },
+ {
+  "text": "中国9和而",
+  "confidence": 51,
+  "bounding_box": [
+   189,
+   398,
+   740,
+   164
+  ],
+  "translation": "China9 and"
+ },
+ {
+  "text": "时政频道 > 要闻",
+  "confidence": 89,
+  "bounding_box": [
+   957,
+   437,
+   429,
+   88
+  ],
+  "translation": "The current affairs channel > highlights"
+ },
+ {
+  "text": "移动新媒体",
+  "confidence": 95,
+  "bounding_box": [
+   2907,
+   447,
+   269,
+   81
+  ],
+  "translation": "Move New Media"
+ },
+ {
+  "text": "站内搜索",
+  "confidence": 96,
+  "bounding_box": [
+   3263,
+   447,
+   220,
+   81
+  ],
+  "translation": "On-site search"
+ },
+ {
+  "text": "从汉中之",
+  "confidence": 81,
+  "bounding_box": [
+   1865,
+   2590,
+   500,
+   149
+  ],
+  "translation": "From the Han."
+ },
+ {
+  "text": "跟看总书记学历史",
+  "confidence": 88,
+  "bounding_box": [
+   829,
+   2591,
+   967,
+   148
+  ],
+  "translation": "Look at the history of the secretary-general."
+ },
+ {
+  "text": "专题",
+  "confidence": 96,
+  "bounding_box": [
+   2840,
+   2657,
+   177,
+   141
+  ],
+  "translation": "Topic"
+ },
+ {
+  "text": "看文肪传承",
+  "confidence": 76,
+  "bounding_box": [
+   1172,
+   2746,
+   616,
+   149
+  ],
+  "translation": "Look at the legacy."
+ },
+ {
+  "text": "下      2023\n中国部媒体大会\nCHINA NEW MEDIA CONFERENCE\n一-一  讓 一 ms",
+  "confidence": 64,
+  "bounding_box": [
+   2840,
+   2839,
+   622,
+   365
+  ],
+  "translation": "2023 Chinese Ministry of Media Conference CHINA NEW MEDIA CONFERENCE I-I Jean-Ams"
+ },
+ {
+  "text": "2023中国新媒体大会",
+  "confidence": 93,
+  "bounding_box": [
+   3468,
+   2881,
+   614,
+   97
+  ],
+  "translation": "2023 China New Media Congress"
+ },
+ {
+  "text": "人民日报客户端 2023-07-31 20:43",
+  "confidence": 87,
+  "bounding_box": [
+   441,
+   2967,
+   772,
+   83
+  ],
+  "translation": "People ' s Daily Client 2023-07-31 20:43"
+ },
+ {
+  "text": "来源:",
+  "confidence": 91,
+  "bounding_box": [
+   191,
+   2969,
+   142,
+   81
+  ],
+  "translation": "Source:"
+ },
+ {
+  "text": "分享",
+  "confidence": 90,
+  "bounding_box": [
+   2283,
+   2970,
+   122,
+   77
+  ],
+  "translation": "Share"
+ },
+ {
+  "text": "北依秦敗",
+  "confidence": 67,
+  "bounding_box": [
+   1001,
+   3220,
+   303,
+   97
+  ],
+  "translation": "Qin has been defeated in the north."
+ },
+ {
+  "text": "在中国地理版图的中心,",
+  "confidence": 84,
+  "bounding_box": [
+   315,
+   3221,
+   677,
+   96
+  ],
+  "translation": "In the center of China's geographical map,"
+ },
+ {
+  "text": "南屏巴山的漢中,",
+  "confidence": 85,
+  "bounding_box": [
+   1314,
+   3221,
+   489,
+   96
+  ],
+  "translation": "In the South Xambashan Han,"
+ },
+ {
+  "text": "既是灌江的友源地,",
+  "confidence": 72,
+  "bounding_box": [
+   1814,
+   3221,
+   551,
+   96
+  ],
+  "translation": "It's a friendland of the river."
+ },
+ {
+  "text": "也是汉文化",
+  "confidence": 96,
+  "bounding_box": [
+   2374,
+   3221,
+   346,
+   95
+  ],
+  "translation": "It's Han culture, too."
+ },
+ {
+  "text": "性\n成都第31屆世界大學生夏季運動會 工\nCHENGDu 2021 FISUWORLD UNIVERSITY GAMES    j\n     W\n后          2 民",
+  "confidence": 69,
+  "bounding_box": [
+   2841,
+   3247,
+   621,
+   329
+  ],
+  "translation": "The 31st World Student Summer Games in Chengdu, 2 people after CHENGDU 2021 FISUWOLD UNIVERSITY GAMES j W"
+ },
+ {
+  "text": "世界看大运",
+  "confidence": 87,
+  "bounding_box": [
+   3466,
+   3291,
+   345,
+   96
+  ],
+  "translation": "The world's looking at luck."
+ },
+ {
+  "text": "的友祥地。",
+  "confidence": 86,
+  "bounding_box": [
+   193,
+   3338,
+   301,
+   96
+  ],
+  "translation": "A friend's place."
+ },
+ {
+  "text": "了\n车",
+  "confidence": 52,
+  "bounding_box": [
+   3386,
+   3422,
+   43,
+   45
+  ],
+  "translation": "Yes, the car."
+ },
+ {
+  "text": "寄斜道见证了苯汉相争的",
+  "confidence": 59,
+  "bounding_box": [
+   316,
+   3571,
+   717,
+   96
+  ],
+  "translation": "The oblivion saw the benzene fight."
+ },
+ {
+  "text": "“明修棧道,",
+  "confidence": 89,
+  "bounding_box": [
+   1041,
+   3571,
+   326,
+   97
+  ],
+  "translation": "“The pedagogy of light,"
+ },
+ {
+  "text": "暗度陈仓",
+  "confidence": 55,
+  "bounding_box": [
+   1379,
+   3571,
+   303,
+   97
+  ],
+  "translation": "Darkness Chen Hakura."
+ },
+ {
+  "text": "古汉人台葛定了汉室四上特多年的煌煌",
+  "confidence": 67,
+  "bounding_box": [
+   1750,
+   3571,
+   970,
+   97
+  ],
+  "translation": "The Guhans have been brilliant for the last four years of Han's life."
+ },
+ {
+  "text": "了",
+  "confidence": 88,
+  "bounding_box": [
+   1696,
+   3615,
+   45,
+   53
+  ],
+  "translation": "Yeah."
+ },
+ {
+  "text": "基业。",
+  "confidence": 72,
+  "bounding_box": [
+   190,
+   3688,
+   179,
+   95
+  ],
+  "translation": "Foundation."
+ },
+ {
+  "text": "歷經秦風灘雨,",
+  "confidence": 74,
+  "bounding_box": [
+   378,
+   3688,
+   427,
+   97
+  ],
+  "translation": "It's been through the Qin beach."
+ },
+ {
+  "text": "不论是金成铁马的运筹帷悍,",
+  "confidence": 66,
+  "bounding_box": [
+   1251,
+   3688,
+   802,
+   97
+  ],
+  "translation": "It's not like they're going to be in the middle of something like this, they're going to be in the middle of something, they're going to be in the middle of something, they're going to be in the middle of something, they're going to be in the middle of something, they're going to be in the middle of something, they're going to be in the middle of something, they're going to be in the middle of something, they're going to be in the middle of something, they's going to be in the middle of something."
+ },
+ {
+  "text": "還是碧血丹心的江湖馳",
+  "confidence": 86,
+  "bounding_box": [
+   2062,
+   3688,
+   658,
+   97
+  ],
+  "translation": "It's still the heart of Beethoven."
+ },
+ {
+  "text": "又學三國傳奇,",
+  "confidence": 64,
+  "bounding_box": [
+   815,
+   3689,
+   427,
+   96
+  ],
+  "translation": "I'm not sure what I'm talking about, but I don't know what I'm talking about."
+ },
+ {
+  "text": "高校毕业生-就业",
+  "confidence": 82,
+  "bounding_box": [
+   3465,
+   3700,
+   486,
+   97
+  ],
+  "translation": "Tertiary graduates - employment"
+ },
+ {
+  "text": "日夜东流的一江汉水是无数历史变迁的见证。",
+  "confidence": 87,
+  "bounding_box": [
+   324,
+   3805,
+   1230,
+   97
+  ],
+  "translation": "The rivers and rivers that flow day and night bear witness to countless historical changes."
+ },
+ {
+  "text": "正在陕西省汉中市考察的习近平总书记来到汉中市博物馆,",
+  "confidence": 89,
+  "bounding_box": [
+   513,
+   4039,
+   1613,
+   96
+  ],
+  "translation": "The General Secretary of Xi Jinping, who is visiting the city of Han in Xanxi province, came to the Han city museum."
+ },
+ {
+  "text": "参观有天历史文物展",
+  "confidence": 93,
+  "bounding_box": [
+   2135,
+   4039,
+   594,
+   96
+  ],
+  "translation": "I'm going to visit the one-day historical exhibition."
+ },
+ {
+  "text": "第十四届复季达沃斯论坛\nG2023年6月27日至29日      加天津",
+  "confidence": 83,
+  "bounding_box": [
+   2840,
+   4067,
+   622,
+   365
+  ],
+  "translation": "Fourteenth Revisited Davos Forum 27-29 June 2023 Gatizin"
+ },
+ {
+  "text": "第十四屆夏李達沃斯",
+  "confidence": 85,
+  "bounding_box": [
+   3466,
+   4109,
+   594,
+   97
+  ],
+  "translation": "The 14th Charles Davos."
+ },
+ {
+  "text": "陳,",
+  "confidence": 62,
+  "bounding_box": [
+   193,
+   4156,
+   113,
+   97
+  ],
+  "translation": "Chen,"
+ },
+ {
+  "text": "了解漢中歷史文化,",
+  "confidence": 74,
+  "bounding_box": [
+   317,
+   4156,
+   550,
+   96
+  ],
+  "translation": "It's a long way to go, and it's a long way to get to know the history and culture of Han."
+ },
+ {
+  "text": "文物保护情况。",
+  "confidence": 81,
+  "bounding_box": [
+   877,
+   4156,
+   428,
+   96
+  ],
+  "translation": "Protection of cultural objects."
+ },
+ {
+  "text": "跟随总书记的脚步,",
+  "confidence": 78,
+  "bounding_box": [
+   1314,
+   4156,
+   552,
+   97
+  ],
+  "translation": "Following the footsteps of the Secretary-General,"
+ },
+ {
+  "text": "我们一起观汉风遗前,",
+  "confidence": 76,
+  "bounding_box": [
+   1875,
+   4156,
+   614,
+   97
+  ],
+  "translation": "We're going to watch the end of the world together."
+ },
+ {
+  "text": "品汉字",
+  "confidence": 93,
+  "bounding_box": [
+   2501,
+   4156,
+   218,
+   96
+  ],
+  "translation": "Physician."
+ },
+ {
+  "text": "從漢中之",
+  "confidence": 84,
+  "bounding_box": [
+   378,
+   4273,
+   283,
+   96
+  ],
+  "translation": "From the Han."
+ },
+ {
+  "text": "襄开去",
+  "confidence": 54,
+  "bounding_box": [
+   814,
+   4273,
+   241,
+   97
+  ],
+  "translation": "Get out of the way."
+ },
+ {
+  "text": "体悟历史文脉的生生不恩。",
+  "confidence": 65,
+  "bounding_box": [
+   1064,
+   4273,
+   740,
+   96
+  ],
+  "translation": "It's not good to be aware of history's veins."
+ },
+ {
+  "text": "風骨,",
+  "confidence": 83,
+  "bounding_box": [
+   191,
+   4275,
+   178,
+   95
+  ],
+  "translation": "Windbone."
+ },
+ {
+  "text": "411 汉 717\n7",
+  "confidence": 65,
+  "bounding_box": [
+   666,
+   4275,
+   143,
+   93
+  ],
+  "translation": "411 Han 717 7"
+ },
+ {
+  "text": "最热新闻",
+  "confidence": 91,
+  "bounding_box": [
+   2840,
+   4570,
+   317,
+   142
+  ],
+  "translation": "The hottest news ever."
+ },
+ {
+  "text": "商务部等四部门:\n口管制",
+  "confidence": 87,
+  "bounding_box": [
+   2842,
+   4767,
+   490,
+   179
+  ],
+  "translation": "Department of Commerce and four other departments:"
+ },
+ {
+  "text": "对部分无人机实施临时出",
+  "confidence": 94,
+  "bounding_box": [
+   3341,
+   4768,
+   715,
+   96
+  ],
+  "translation": "Implementation of temporary release of some UAVs"
+ },
+ {
+  "text": "國家出台恢复和打 大消費20祭措施",
+  "confidence": 87,
+  "bounding_box": [
+   2845,
+   5075,
+   977,
+   97
+  ],
+  "translation": "The state has put in place measures to restore and fight the cost of 20 sacrifices."
+ }
+]

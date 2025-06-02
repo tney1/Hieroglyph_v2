@@ -1,0 +1,57 @@
+# Pin to 3.11 for the moment
+ARG PYTHON_VERSION=3.11
+
+FROM python:${PYTHON_VERSION}
+
+ENV PORT 8088
+
+WORKDIR /opt/app/
+
+RUN apt-get install curl -y
+
+RUN apt update
+
+RUN curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg
+
+RUN curl -s -L https://nvidia.github.io/libnvidia-container/stable/deb/nvidia-container-toolkit.list | sed 's#deb https://#deb [signed-by=/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg] https://#g' | tee /etc/apt/sources.list.d/nvidia-container-toolkit.list
+
+RUN apt update
+
+RUN apt-get install -y nvidia-container-toolkit
+
+RUN apt update && \
+    apt install -y build-essential && \ 
+    apt install -y tesseract-ocr tesseract-ocr-rus tesseract-ocr-chi-sim tesseract-ocr-chi-tra tesseract-ocr-chi-sim-vert tesseract-ocr-chi-tra-vert && \
+    apt install -y nvidia-docker2
+
+## Add and extract dependencies
+COPY requirements.txt /opt/app/
+
+## Install dependencies
+RUN python3 -m pip install -r /opt/app/requirements.txt
+RUN python3 -m pip install torch torchvision torchaudio
+RUN python3 -m pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
+
+# needed for img2tables
+RUN apt-get update && apt-get install -y \ 
+    libgl1-mesa-glx \
+    libglib2.0-0
+
+# make sure pwsh is avaliable for when WSL jumps to using it
+RUN apt-get update && apt-get install -y wget apt-transport-https software-properties-common
+RUN wget -q https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.deb
+RUN dpkg -i packages-microsoft-prod.deb
+RUN apt-get update && apt-get install -y powershell
+
+# FROM node:20
+# RUN npm install -g npm@latest
+# WORKDIR /app
+# COPY . .
+# RUN npm install
+
+# RUN npx update-browserlist-db@latest
+
+# RUN yarn config set disable-self-update-check true
+# RUN yarn install
+
+# EXPOSE $PORT

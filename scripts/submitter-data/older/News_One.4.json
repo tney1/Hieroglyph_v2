@@ -1,0 +1,761 @@
+[
+ {
+  "text": "校检 :",
+  "confidence": 55,
+  "bounding_box": [
+   315,
+   220,
+   179,
+   96
+  ],
+  "translation": "Checkup:"
+ },
+ {
+  "text": "余荣华",
+  "confidence": 91,
+  "bounding_box": [
+   503,
+   220,
+   239,
+   96
+  ],
+  "translation": "Yu Yong-hwa."
+ },
+ {
+  "text": "E=志三]\n自 石石",
+  "confidence": 50,
+  "bounding_box": [
+   753,
+   220,
+   157,
+   96
+  ],
+  "translation": "E = Chizo]"
+ },
+ {
+  "text": "图片来源:",
+  "confidence": 90,
+  "bounding_box": [
+   318,
+   453,
+   301,
+   96
+  ],
+  "translation": "Image source:"
+ },
+ {
+  "text": "(摄影:",
+  "confidence": 81,
+  "bounding_box": [
+   854,
+   453,
+   202,
+   99
+  ],
+  "translation": "(photography: )"
+ },
+ {
+  "text": "新華社",
+  "confidence": 92,
+  "bounding_box": [
+   627,
+   454,
+   220,
+   95
+  ],
+  "translation": "Xinhua Society"
+ },
+ {
+  "text": "〔责任编辑: 许聘】",
+  "confidence": 71,
+  "bounding_box": [
+   2340,
+   774,
+   405,
+   82
+  ],
+  "translation": "[Responsible Editor: promising employment]"
+ },
+ {
+  "text": "中国日报客户端 下载",
+  "confidence": 92,
+  "bounding_box": [
+   207,
+   941,
+   679,
+   128
+  ],
+  "translation": "China Daily Client Download"
+ },
+ {
+  "text": "資訊",
+  "confidence": 94,
+  "bounding_box": [
+   1497,
+   1306,
+   159,
+   97
+  ],
+  "translation": "Information"
+ },
+ {
+  "text": "独家",
+  "confidence": 96,
+  "bounding_box": [
+   3181,
+   1306,
+   158,
+   96
+  ],
+  "translation": "Exclusive."
+ },
+ {
+  "text": "首页",
+  "confidence": 59,
+  "bounding_box": [
+   936,
+   1307,
+   157,
+   96
+  ],
+  "translation": "Home Page"
+ },
+ {
+  "text": "時政",
+  "confidence": 90,
+  "bounding_box": [
+   1218,
+   1307,
+   156,
+   95
+  ],
+  "translation": "The state of affairs."
+ },
+ {
+  "text": "财经",
+  "confidence": 96,
+  "bounding_box": [
+   1778,
+   1307,
+   158,
+   95
+  ],
+  "translation": "Finance"
+ },
+ {
+  "text": "生活",
+  "confidence": 96,
+  "bounding_box": [
+   2058,
+   1307,
+   159,
+   96
+  ],
+  "translation": "Life."
+ },
+ {
+  "text": "視頻",
+  "confidence": 92,
+  "bounding_box": [
+   2339,
+   1307,
+   159,
+   96
+  ],
+  "translation": "Video"
+ },
+ {
+  "text": "專欄",
+  "confidence": 71,
+  "bounding_box": [
+   2620,
+   1307,
+   158,
+   96
+  ],
+  "translation": "Column"
+ },
+ {
+  "text": "招聘",
+  "confidence": 96,
+  "bounding_box": [
+   3461,
+   1307,
+   160,
+   96
+  ],
+  "translation": "Recruitment"
+ },
+ {
+  "text": "雙語",
+  "confidence": 86,
+  "bounding_box": [
+   2900,
+   1308,
+   159,
+   95
+  ],
+  "translation": "Bilingual"
+ },
+ {
+  "text": "地方频道:",
+  "confidence": 92,
+  "bounding_box": [
+   935,
+   1518,
+   237,
+   81
+  ],
+  "translation": "Local channel:"
+ },
+ {
+  "text": "吉林",
+  "confidence": 96,
+  "bounding_box": [
+   2223,
+   1518,
+   126,
+   81
+  ],
+  "translation": "Gilling."
+ },
+ {
+  "text": "北京",
+  "confidence": 94,
+  "bounding_box": [
+   1267,
+   1519,
+   127,
+   80
+  ],
+  "translation": "Beijing"
+ },
+ {
+  "text": "天津",
+  "confidence": 90,
+  "bounding_box": [
+   1458,
+   1519,
+   127,
+   80
+  ],
+  "translation": "Tianjin."
+ },
+ {
+  "text": "河北",
+  "confidence": 96,
+  "bounding_box": [
+   1649,
+   1519,
+   127,
+   80
+  ],
+  "translation": "Hebei."
+ },
+ {
+  "text": "山西",
+  "confidence": 96,
+  "bounding_box": [
+   1843,
+   1519,
+   124,
+   80
+  ],
+  "translation": "Shanxi."
+ },
+ {
+  "text": "辽宁",
+  "confidence": 94,
+  "bounding_box": [
+   2031,
+   1519,
+   127,
+   80
+  ],
+  "translation": "Liaoning."
+ },
+ {
+  "text": "黑龙江",
+  "confidence": 93,
+  "bounding_box": [
+   2413,
+   1519,
+   174,
+   80
+  ],
+  "translation": "Heilongjiang."
+ },
+ {
+  "text": "上海",
+  "confidence": 91,
+  "bounding_box": [
+   2651,
+   1519,
+   127,
+   80
+  ],
+  "translation": "Shanghai"
+ },
+ {
+  "text": "浙江",
+  "confidence": 96,
+  "bounding_box": [
+   3033,
+   1519,
+   128,
+   80
+  ],
+  "translation": "Zhejiang."
+ },
+ {
+  "text": "福建",
+  "confidence": 95,
+  "bounding_box": [
+   3224,
+   1519,
+   127,
+   80
+  ],
+  "translation": "Fujian."
+ },
+ {
+  "text": "山东",
+  "confidence": 63,
+  "bounding_box": [
+   3610,
+   1519,
+   123,
+   80
+  ],
+  "translation": "Shandong."
+ },
+ {
+  "text": "河南",
+  "confidence": 95,
+  "bounding_box": [
+   3798,
+   1519,
+   125,
+   80
+  ],
+  "translation": "Henan."
+ },
+ {
+  "text": "江西",
+  "confidence": 95,
+  "bounding_box": [
+   3416,
+   1520,
+   126,
+   79
+  ],
+  "translation": "Jiangxi!"
+ },
+ {
+  "text": "关于我们",
+  "confidence": 89,
+  "bounding_box": [
+   231,
+   1605,
+   217,
+   80
+  ],
+  "translation": "About us."
+ },
+ {
+  "text": "联系我们",
+  "confidence": 93,
+  "bounding_box": [
+   496,
+   1605,
+   218,
+   80
+  ],
+  "translation": "Get in touch with us."
+ },
+ {
+  "text": "湖北",
+  "confidence": 96,
+  "bounding_box": [
+   936,
+   1643,
+   126,
+   81
+  ],
+  "translation": "Hubei."
+ },
+ {
+  "text": "湖南",
+  "confidence": 96,
+  "bounding_box": [
+   1127,
+   1643,
+   126,
+   81
+  ],
+  "translation": "Hunan."
+ },
+ {
+  "text": "广东",
+  "confidence": 91,
+  "bounding_box": [
+   1317,
+   1643,
+   128,
+   80
+  ],
+  "translation": "Guangdong."
+ },
+ {
+  "text": "海南",
+  "confidence": 96,
+  "bounding_box": [
+   1699,
+   1643,
+   127,
+   81
+  ],
+  "translation": "Henan."
+ },
+ {
+  "text": "廣西",
+  "confidence": 94,
+  "bounding_box": [
+   1508,
+   1644,
+   127,
+   80
+  ],
+  "translation": "Guangxi!"
+ },
+ {
+  "text": "重庆",
+  "confidence": 94,
+  "bounding_box": [
+   1892,
+   1644,
+   125,
+   80
+  ],
+  "translation": "Chongqing."
+ },
+ {
+  "text": "四川",
+  "confidence": 91,
+  "bounding_box": [
+   2085,
+   1644,
+   119,
+   80
+  ],
+  "translation": "Sichuan."
+ },
+ {
+  "text": "云南",
+  "confidence": 96,
+  "bounding_box": [
+   2273,
+   1644,
+   126,
+   80
+  ],
+  "translation": "Yunnan."
+ },
+ {
+  "text": "西藏",
+  "confidence": 70,
+  "bounding_box": [
+   2656,
+   1644,
+   126,
+   80
+  ],
+  "translation": "Tibet"
+ },
+ {
+  "text": "陕西",
+  "confidence": 96,
+  "bounding_box": [
+   2847,
+   1644,
+   125,
+   80
+  ],
+  "translation": "Tssi!"
+ },
+ {
+  "text": "新疆",
+  "confidence": 92,
+  "bounding_box": [
+   3037,
+   1644,
+   126,
+   80
+  ],
+  "translation": "Xinjiang"
+ },
+ {
+  "text": "深圳",
+  "confidence": 96,
+  "bounding_box": [
+   3228,
+   1644,
+   125,
+   80
+  ],
+  "translation": "Shenzhen."
+ },
+ {
+  "text": "友情链接:",
+  "confidence": 89,
+  "bounding_box": [
+   934,
+   1834,
+   238,
+   81
+  ],
+  "translation": "Friendship links:"
+ },
+ {
+  "text": "央广网",
+  "confidence": 92,
+  "bounding_box": [
+   1267,
+   1834,
+   170,
+   81
+  ],
+  "translation": "Hironet."
+ },
+ {
+  "text": "中国西藏网",
+  "confidence": 94,
+  "bounding_box": [
+   1508,
+   1834,
+   261,
+   81
+  ],
+  "translation": "China Tibet Network"
+ },
+ {
+  "text": "中国新闻网",
+  "confidence": 90,
+  "bounding_box": [
+   1839,
+   1834,
+   262,
+   81
+  ],
+  "translation": "China News Network"
+ },
+ {
+  "text": "中国台湾网",
+  "confidence": 91,
+  "bounding_box": [
+   2170,
+   1834,
+   262,
+   81
+  ],
+  "translation": "Taiwan Network of China"
+ },
+ {
+  "text": "中国经济网",
+  "confidence": 93,
+  "bounding_box": [
+   2502,
+   1834,
+   261,
+   81
+  ],
+  "translation": "China Economic Network"
+ },
+ {
+  "text": "中国青年网",
+  "confidence": 94,
+  "bounding_box": [
+   2833,
+   1834,
+   262,
+   81
+  ],
+  "translation": "China Youth Network"
+ },
+ {
+  "text": "光明网",
+  "confidence": 96,
+  "bounding_box": [
+   3162,
+   1834,
+   171,
+   81
+  ],
+  "translation": "♪ The bright net ♪"
+ },
+ {
+  "text": "国际在线",
+  "confidence": 92,
+  "bounding_box": [
+   3402,
+   1834,
+   218,
+   81
+  ],
+  "translation": "International Online"
+ },
+ {
+  "text": "央视网",
+  "confidence": 95,
+  "bounding_box": [
+   3684,
+   1834,
+   171,
+   81
+  ],
+  "translation": "Omnibus Network"
+ },
+ {
+  "text": "中国网",
+  "confidence": 90,
+  "bounding_box": [
+   938,
+   1959,
+   168,
+   81
+  ],
+  "translation": "Chinanet"
+ },
+ {
+  "text": "新华网",
+  "confidence": 92,
+  "bounding_box": [
+   1173,
+   1959,
+   171,
+   80
+  ],
+  "translation": "Xinhuanet"
+ },
+ {
+  "text": "人民网",
+  "confidence": 90,
+  "bounding_box": [
+   1412,
+   1960,
+   170,
+   80
+  ],
+  "translation": "People ' s Network"
+ },
+ {
+  "text": "互联网新闻信息服务许可证10120170006",
+  "confidence": 93,
+  "bounding_box": [
+   1903,
+   2169,
+   895,
+   81
+  ],
+  "translation": "Internet News Information Service Licence 1012017006"
+ },
+ {
+  "text": "违法和不良信息举报",
+  "confidence": 94,
+  "bounding_box": [
+   1364,
+   2170,
+   454,
+   80
+  ],
+  "translation": "Reporting of violations of the law and bad information"
+ },
+ {
+  "text": "信息网络传播视听节目许可证0108263号",
+  "confidence": 94,
+  "bounding_box": [
+   2882,
+   2170,
+   881,
+   81
+  ],
+  "translation": "Licence No. 0108263 for the dissemination of audio-visual programmes on the information network"
+ },
+ {
+  "text": "京公网安备11010502032503号",
+  "confidence": 91,
+  "bounding_box": [
+   1364,
+   2318,
+   698,
+   80
+  ],
+  "translation": "It's got 110105020325003."
+ },
+ {
+  "text": "京网文[2011]0283-097号",
+  "confidence": 89,
+  "bounding_box": [
+   2146,
+   2318,
+   574,
+   82
+  ],
+  "translation": "Kyoto weblog [2011] 0283-097"
+ },
+ {
+  "text": "京ICP备13028878号-6",
+  "confidence": 90,
+  "bounding_box": [
+   2804,
+   2318,
+   513,
+   80
+  ],
+  "translation": "Kyoto ICP 13028878-6"
+ },
+ {
+  "text": "中国日报网版权说明: 凡注明来源为“中国日报网;: XXX (署名)“ , 除與中國日報网簽署內容授權協議的网站外, 其他任何网站或單位末經允許\n茶止转载使用 加者必究。如需使用, 請與010-84883777聯累; 凡本网注明“来源: XXX (非中國日報网)“ 的作品, 均轉載自其它媒體, 鋪\n在於傳播更多信息, 其他媒體如需轉載, 請與稿件來源方聯繫, 如產生任何問題與本網無關。",
+  "confidence": 80,
+  "bounding_box": [
+   935,
+   2532,
+   3025,
+   237
+  ],
+  "translation": "Copyright note for the Chinese daily newspaper: Any website or unit that has been authorized at the end of a contract for the authorization of content with the Chinese daily newspaper, except for those that indicate that the source is “China daily; XXX (signed)”If you want to use it, please contact the source of the text, if you have any problems."
+ },
+ {
+  "text": "目的",
+  "confidence": 96,
+  "bounding_box": [
+   3880,
+   2610,
+   119,
+   80
+  ],
+  "translation": "Purpose"
+ },
+ {
+  "text": "版权保护: 本网登载的内容 (包括文字图片多媒体资讯等) 版权属中国日报网 (中报国际文化传媒 (北京) 有限公司) 独家所有使用。\n國日報网事先協商授權, 禁止轉載使用。給中國日報网提意凡: rx@chinadaily.com.cn",
+  "confidence": 82,
+  "bounding_box": [
+   936,
+   2824,
+   2855,
+   165
+  ],
+  "translation": "Copyright protection: The content published on the Internet (including text-photo multimedia information, etc.) is used exclusively by the Chinese daily newspaper (the Chinese newspaper International Cultural Media (Beijing) Ltd.) and pre-consensually banned from re-routing."
+ },
+ {
+  "text": "未经中",
+  "confidence": 95,
+  "bounding_box": [
+   3803,
+   2825,
+   171,
+   80
+  ],
+  "translation": "Unachieved."
+ }
+]
