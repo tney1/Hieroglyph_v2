@@ -376,3 +376,53 @@ def _range_find_optimal_rectangles(source_image: ImageWrapper,
         return []
         # raise ValueError(f"ERROR finding neighborhood bound for image {source_image.name}, exiting for debug")
     return actual_rectangles
+
+
+import nltk
+nltk.download('punkt')  # Only needs to run once
+from nltk.tokenize import sent_tokenize
+from hieroglyph.translation.translator import Translator
+
+
+def process_text_by_unit(ocr_text: str) -> list:
+    """
+    Split OCR output into lines (if code) or sentences (if prose).
+    """
+    code_indicators = ['{', '}', ';', 'def ', 'class ', '#', '//', 'import ', 'return ']
+    is_code = any(indicator in ocr_text for indicator in code_indicators)
+
+    if is_code:
+        units = ocr_text.splitlines()
+    else:
+        units = sent_tokenize(ocr_text)
+
+    return [line.strip() for line in units if line.strip()]
+
+
+def translate_by_line_or_sentence(ocr_text: str, source_lang: str, target_lang: str) -> list:
+    """
+    Translate each sentence or code line individually.
+    """
+    translator = Translator()
+    units = process_text_by_unit(ocr_text)
+
+    translations = []
+    for unit in units:
+        try:
+            translated = translator.translate(source_language=source_lang, target_language=target_lang, text=unit)
+            translations.append((unit, translated))
+        except Exception as e:
+            translations.append((unit, f"[Translation Error: {e}]"))
+
+    return translations
+
+
+def print_translations(translated_units: list):
+    """
+    Pretty-print translated output.
+    """
+    for original, translated in translated_units:
+        print(f"[Original]   {original}")
+        print(f"[Translated] {translated}")
+        print("-----")
+

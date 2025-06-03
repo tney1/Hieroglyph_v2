@@ -77,13 +77,22 @@ def process_ocr(input_image_data: ImageRequestData,
     #     confidence_threshold = TEXT_CONFIDENCE_THRESHOLD if input_image_data.image_type == INBOUND_IMAGE_TYPE.TEXT_BASED else DIAGRAM_CONFIDENCE_THRESHOLD
     #     logger.debug(f"Using default confidence threshold: {confidence_threshold}")
 
-    logger.debug("Finished image preprocessing, moving on to OCR")
-    image_name_to_language_extractions: List[TextWrapper] = get_text_from_images(
-        source_image_to_list_of_boxes=preprocessed_data,
-        language=input_image_data.src_lang,
-        cthreshold=confidence_threshold
-    )
     logger.debug("Finished OCR, moving to translation")
+    
+    from hieroglyph.translation.smart_translate import translate_by_line_or_sentence
+
+    for textwrapper in image_name_to_language_extractions:
+        for box in textwrapper.data:
+            original_text = box["text"]
+            translated_lines = translate_by_line_or_sentence(
+                original_text,
+                source_lang=input_image_data.src_lang,
+                target_lang=input_image_data.dst_lang
+            )
+            box["translated"] = translated_lines  # Add translated content to each box
+
+    logger.debug("Finished translating OCR output")
+
     return (image_name_to_language_extractions, preprocessed_data) if debug else (image_name_to_language_extractions, None)
 
 
@@ -161,5 +170,6 @@ def _validate_lang(image_lang: str, lang_src: str) -> str:
 
     if converted_lang is None:
         raise HTTPException(400, f"The '{lang_src}' does not conform. Check spelling.")
+
 
     return converted_lang
