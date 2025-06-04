@@ -34,14 +34,18 @@ def get_text_from_images(source_image_to_list_of_boxes: Dict[ImageWrapper, List[
 
 
 def _threaded_extract(box_images: List[ImageWrapper], language: str, cthreshold: int) -> List[BoxData]:
-    """Extract text from a list of images, with lanugage being our input lang for pytesseract"""
-    extracted_content: List[TextWrapper] = []
+    """Extract text from a list of images, with language being our input lang for pytesseract"""
+    extracted_content: List[BoxData] = []
     _extract_and_write_func = lambda img: _extract_and_write(img, language, cthreshold)
     skipped, not_skipped = 0, 0
+
     with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
         for result in executor.map(_extract_and_write_func, box_images):
             if result:
-                extracted_content.append(result)
+                if isinstance(result, list):
+                    extracted_content.extend(result)
+                else:
+                    extracted_content.append(result)
                 not_skipped += 1
             else:
                 skipped += 1
@@ -80,7 +84,11 @@ def _create_box_data(box_image: ImageWrapper, box_ocr_data: List[Dict[str, str |
 
     logger.debug(f"{box_image.name} Found {len(relevant_boxes)} relevant boxes")
     box_mean = mean(char['conf'] for char in relevant_boxes) if relevant_boxes else 0.0
-    box_string = "".join(char['text'] for char in relevant_boxes)
+    from re import split as re_split
+
+    # Split on sentence terminators (language-aware)
+    sentences = [s.strip() for s in re_split(r'(?<=[。！？.!?])\s*', "".join(char['text'] for char in relevant_boxes)) if s.strip()]
+
 
     # threshold = TEXT_CONFIDENCE_THRESHOLD if box_image.image_type == INBOUND_IMAGE_TYPE.TEXT_BASED else DIAGRAM_CONFIDENCE_THRESHOLD
     if cthreshold:
@@ -95,12 +103,16 @@ def _create_box_data(box_image: ImageWrapper, box_ocr_data: List[Dict[str, str |
 
     logger.debug(f"Image OCR received a confidence threshold value of: {threshold}")
 
-    if box_string and box_mean >= threshold:
-        return BoxData(
-            text=box_string,
-            confidence=box_mean,
-            bounding_box=box_image._box
-        )
+    if sentences and box_mean >= threshold:
+        box_data_list = []
+        for sent in sentences:
+            box_data_list.append(BoxData(
+                text=sent,
+                confidence=box_mean,
+                bounding_box=box_image._box  # Could improve this later to shrink per sentence
+        ))
+        return box_data_list
+
     else:
         logger.warning(f"Box for {box_image.name} with dimensions {box_image._box} with text [{box_string}]"
                        f" had mean of {box_mean} below {threshold}")

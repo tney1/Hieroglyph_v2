@@ -13,6 +13,17 @@ import logging
 logger = logging.getLogger(__name__)
 
 
+def classify_text_type(ocr_text: str) -> str:
+    """
+    Classifies OCR text as either 'code' or 'prose' using basic heuristics.
+    """
+    code_indicators = ['{', '}', ';', 'def ', 'class ', '#', '//', 'import ', 'return ', '->']
+    lines = ocr_text.splitlines()
+    code_lines = [line for line in lines if any(indicator in line for indicator in code_indicators)]
+
+    return "code" if len(code_lines) / max(len(lines), 1) >= 0.3 else "prose"
+
+
 class BoxData:
     """
     {

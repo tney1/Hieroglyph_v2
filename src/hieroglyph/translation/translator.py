@@ -266,6 +266,30 @@ class Translator(object):
 
         return [combined_text]
 
+from hieroglyph.utils.sentence_segmentation import extract_sentences_with_boxes
+from PIL import Image
+from typing import List, Tuple
+
+def translate_sentences_from_box(box_img: Image.Image, source_lang: str, target_lang: str) -> List[Tuple[str, str, Tuple[int, int, int, int]]]:
+    """
+    Translates each sentence extracted from an image region (paragraph box) and returns:
+    (original sentence, translated sentence, bounding box)
+    """
+    translator = Translator()
+    translator.configure(models_dir="", language=source_lang)  # You may want to set a real path and call .setup()
+    translator.setup()
+
+    results = []
+    for sentence, (x, y, w, h) in extract_sentences_with_boxes(box_img):
+        try:
+            translated = translator.translate(source_lang, target_lang, sentence)
+        except Exception as e:
+            translated = [f"[Translation Error: {e}]"]
+
+        results.append((sentence, translated[0], (x, y, w, h)))
+
+    return results
+
 
 if __name__ == "__main__":
 
