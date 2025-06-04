@@ -235,19 +235,37 @@ function Canvas({ allPages, setAllPages, pageNumber, name, pdfWidth, pdfHeight, 
     };
 
     function drawSingleBox(box, id) {
-        console.debug("Canvas.drawSingleBox drawing box, id", box, id)
-        console.debug("Canvas.drawSingleBox actual box", box.x*pdfWidth, box.y*pdfHeight, box.w*pdfWidth, box.h*pdfHeight);
-        let context = canvasRef.current.getContext('2d', { desynchronized: false });
-        console.debug("Canvas.drawSingleBox canvas", canvasRef.current);
-        console.debug("Canvas.drawSingleBox width and height", pdfWidth, pdfHeight);
+    console.debug("Canvas.drawSingleBox drawing box, id", box, id);
+    console.debug("Canvas.drawSingleBox actual box", box.x * pdfWidth, box.y * pdfHeight, box.w * pdfWidth, box.h * pdfHeight);
 
-        context.scale(1, 1);
-        context.strokeStyle = "blue";
-        context.lineWidth = 1;
-        context.font = "small-caps 100 .65rem serif";
-        context.strokeRect(box.x*pdfWidth, box.y*pdfHeight, box.w*pdfWidth, box.h*pdfHeight);
-        context.strokeText(id, (box.x+box.w)*pdfWidth+3, (box.y+box.h)*pdfHeight);
+    let context = canvasRef.current.getContext('2d', { desynchronized: false });
+    context.save();
+
+    // Draw rectangle
+    context.strokeStyle = "green"; // Use green for better visibility
+    context.lineWidth = 1.5;
+    context.strokeRect(box.x * pdfWidth, box.y * pdfHeight, box.w * pdfWidth, box.h * pdfHeight);
+
+    // Draw sentence or translated text if available
+    const label = box.translated || box.text || "";  // Use translated text if available
+    if (label) {
+        context.font = "12px sans-serif";
+        context.fillStyle = "black";
+        context.fillText(
+            label.length > 60 ? label.slice(0, 60) + "..." : label,
+            box.x * pdfWidth,
+            box.y * pdfHeight - 4
+        );
     }
+
+    // Draw box ID if needed (debug)
+    context.font = "10px monospace";
+    context.fillStyle = "gray";
+    context.fillText(id, (box.x + box.w) * pdfWidth + 3, (box.y + box.h) * pdfHeight);
+
+    context.restore();
+}
+
 
     useEffect(() => {
         console.log("Canvas.UseEffect Triggered:", canvasRef.current, "pdfWidth:", pdfWidth, "pdfHeight:", pdfHeight);
