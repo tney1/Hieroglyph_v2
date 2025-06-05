@@ -74,55 +74,105 @@ def get_bounding_boxes(source_image: ImageWrapper,
                        transformed_image: ImageWrapper,
                        image_type: INBOUND_IMAGE_TYPE,
                        scale_pairing: Tuple[int, int] | None = None,
-                       debug_mode: bool = False,
-                       text_type: str = "prose") -> List[ImageWrapper]:
+                       debug_mode: bool = False) -> List[ImageWrapper]:
+    """Take preprocessed images and extract bounding box images"""
     source_image_array = source_image.get_array()
     if debug_mode:
         debug_path = Path("assets/DEBUG")
         debug_path.mkdir(parents=True, exist_ok=True)
         debug_source_image_array: np.ndarray = source_image_array.copy()
 
+    # Convert to binary and invert polarity
     __, inverted_binary_image = cv2.threshold(transformed_image.to_array(), 0, 255,
                                               cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)
 
+    # If the passed image is diagram-based
     if image_type == INBOUND_IMAGE_TYPE.DIAGRAM_BASED:
-        rectangles = find_diagram_rectangles(source_image, inverted_binary_image, scale_pairing)
-    elif image_type == INBOUND_IMAGE_TYPE.TABLE_BASED:
-        rectangles = find_table_rectangles(source_image, inverted_binary_image, scale_pairing)
-    elif image_type in (INBOUND_IMAGE_TYPE.TEXT_BASED, INBOUND_IMAGE_TYPE.TEXT_BASED_LINES):
-        if text_type == "code":
-            kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (1, 2))
-            iterations = 5
-        else:
-            kernel = cv2.getStructuringElement(cv2.MORPH_CROSS, (4, 4))
-            iterations = 12
+        logger.debug(f"Initializing Bounding Box Creation for ENUM Type: {image_type}")
+        """
+        This is currently the optimal setting for bounding boxes for diagram-based images
+        """
 
-        dilated_thresh = cv2.dilate(inverted_binary_image, kernel, iterations=iterations)
+        rectangles = find_diagram_rectangles(source_image, inverted_binary_image, scale_pairing)
+
+    elif image_type == INBOUND_IMAGE_TYPE.TABLE_BASED: 
+        logger.debug(f"Initializing Bounding Box Creation for ENUM Type: {image_type}") # putting table based here for now
+        """
+        This is currently the optimal setting for bounding boxes for diagram-based images
+        """
+        rectangles = find_table_rectangles(source_image, inverted_binary_image, scale_pairing)
+
+    elif image_type == INBOUND_IMAGE_TYPE.TEXT_BASED or image_type == INBOUND_IMAGE_TYPE.TEXT_BASED_LINES:
+        logger.debug(f"Initializing Bounding Box Creation for ENUM Type: {image_type}")
+        """
+        This is currently the optimal setting for bounding boxes for paragraph-based text-images
+        """
+
+        # ######### ORIGINAL ON DEV BRANCH
+        # kernel = cv2.getStructuringElement(cv2.MORPH_CROSS, (3, 3))
+        # dilated_thresh = cv2.dilate(inverted_binary_image, kernel, iterations=5)
+        # contours, _ = cv2.findContours(dilated_thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
+        
+        kernel = cv2.getStructuringElement(cv2.MORPH_CROSS, (4, 4))
+        dilated_thresh = cv2.dilate(inverted_binary_image, kernel, iterations=12)
         contours, _ = cv2.findContours(dilated_thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
         rectangles = [cv2.boundingRect(c) for c in contours]
+
+        # kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (8, 8))
+        # dilated_thresh = cv2.dilate(inverted_binary_image, kernel, iterations=4)
+        # contours, _ = cv2.findContours(dilated_thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
     else:
-        SystemExit(f"Invalid image_type: {image_type}")
+        SystemExit(f"The enumerator passed into var 'image_type' is invalid. It appears to be {image_type}")
 
     all_boxes: List[ImageWrapper] = []
+    num_skipped, num_not_skipped = 0, 0
+    # Iterate contours, find bounding rectangles, Sort by: area, y, x
+    # for num, rectangle in enumerate(sorted(rectangles, key=lambda r: (r[1]*r[2], r[1], r[0])), start=1):
+    # Iterate contours, find bounding rectangles, Sort by: y, x
     for num, rectangle in enumerate(sorted(rectangles, key=lambda r: (r[1], r[0])), start=1):
+        # Get bounding rectangle
         x, y, w, h = rectangle
         if h < 3 or w < 3:
+            logger.warning(f"{source_image.name} rectangle {num} too small (x,y,w,h): {(x, y, w, h)}")
+            num_skipped += 1
             continue
         img_arr = source_image_array[y:y+h, x:x+w]
+        num_not_skipped += 1
         final_image = ImageWrapper(src_image=img_arr,
                                    name=f"{source_image.name}.box.{num}.png",
                                    box=[x, y, w, h],
                                    image_type=image_type,
                                    normalize_size=True)
         if debug_mode:
-            cv2.rectangle(debug_source_image_array, (x, y), (x+w, y+h), (0, 255, 0), 1)
+            # DEBUG
+            # cv2.imwrite(str(debug_path / final_image.name), final_image.get_array())
+            cv2.rectangle(debug_source_image_array, (x, y), (x+w, y+h), (0, 255, 0), thickness=1)
+            cv2.putText(
+                img=debug_source_image_array,
+                text=f"[{num}]{x},{y},{w},{h}",
+                org=(x, y),
+                color=(0, 255, 0),
+                thickness=1,
+                fontScale=0.5,
+                fontFace=cv2.FONT_HERSHEY_COMPLEX_SMALL,
+                lineType=cv2.LINE_AA
+            )
+            # END DEBUG
+
         all_boxes.append(final_image)
 
+    logger.debug(f"Finished with boxes for {source_image.name}: {num_skipped} were skipped,"
+                 f" and {num_not_skipped} were processed")
+    logger.debug(f"Boxes: {all_boxes}")
+
+    # DEBUG
     if debug_mode:
-        cv2.imwrite(str(debug_path / f"{source_image.name}.all_boxes.png"), debug_source_image_array)
+        debug_filename = debug_path / f"{source_image.name}.all_boxes.png"
+        logger.debug(f"Output all_boxes: {debug_filename}")
+        cv2.imwrite(str(debug_filename), debug_source_image_array)
+    # END DEBUG
 
-    return all_boxes
-
+    return all_boxes 
 
 
 def calculate_average_closest_box_proximity(rectangles: List[Tuple]) -> float:
@@ -326,53 +376,3 @@ def _range_find_optimal_rectangles(source_image: ImageWrapper,
         return []
         # raise ValueError(f"ERROR finding neighborhood bound for image {source_image.name}, exiting for debug")
     return actual_rectangles
-
-
-import nltk
-nltk.download('punkt')  # Only needs to run once
-from nltk.tokenize import sent_tokenize
-from hieroglyph.translation.translator import Translator
-
-
-def process_text_by_unit(ocr_text: str) -> list:
-    """
-    Split OCR output into lines (if code) or sentences (if prose).
-    """
-    code_indicators = ['{', '}', ';', 'def ', 'class ', '#', '//', 'import ', 'return ']
-    is_code = any(indicator in ocr_text for indicator in code_indicators)
-
-    if is_code:
-        units = ocr_text.splitlines()
-    else:
-        units = sent_tokenize(ocr_text)
-
-    return [line.strip() for line in units if line.strip()]
-
-
-def translate_by_line_or_sentence(ocr_text: str, source_lang: str, target_lang: str) -> list:
-    """
-    Translate each sentence or code line individually.
-    """
-    translator = Translator()
-    units = process_text_by_unit(ocr_text)
-
-    translations = []
-    for unit in units:
-        try:
-            translated = translator.translate(source_language=source_lang, target_language=target_lang, text=unit)
-            translations.append((unit, translated))
-        except Exception as e:
-            translations.append((unit, f"[Translation Error: {e}]"))
-
-    return translations
-
-
-def print_translations(translated_units: list):
-    """
-    Pretty-print translated output.
-    """
-    for original, translated in translated_units:
-        print(f"[Original]   {original}")
-        print(f"[Translated] {translated}")
-        print("-----")
-

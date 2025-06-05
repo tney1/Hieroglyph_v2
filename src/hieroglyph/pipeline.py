@@ -22,6 +22,39 @@ def process_ocr(input_image_data: ImageRequestData,
                 debug: bool = False) -> Tuple[List[TextWrapper], Optional[Dict[ImageWrapper, List[ImageWrapper]]]]:
     """
     Return list of textwrappers corresponding to the data found when OCRing the input image. debug=True will return preprocessed images as well
+        return
+        (
+            [
+                TextWrapper{
+                    "name": "name of the image we are working on",
+                    "language": "tesseract langauge we used to ocr content",
+                    "overall_confidence": 0.0, # float value = average of box data confidence values
+                    "data": [
+                        BoxData
+                    ]
+                }
+            ],
+            None
+        )
+        OR
+        (
+            [
+                TextWrapper{
+                    "name": "name of the image we are working on",
+                    "language": "tesseract langauge we used to ocr content",
+                    "overall_confidence": 0.0, # float value = average of box data confidence values
+                    "data": [
+                        BoxData
+                    ]
+                }
+            ],
+            {
+                ImageWrapper: # Transformed Page ImageWrapper
+                [
+                    ImageWrapper: {} # Individual boxes on Transformed Page ImageWrapper
+                ]
+            }
+        )
     """
     preprocessed_data: Dict[ImageWrapper, List[ImageWrapper]] = process_data(
         input_image_data=input_image_data,
@@ -29,7 +62,8 @@ def process_ocr(input_image_data: ImageRequestData,
         boxes=input_image_data.boxes if hasattr(input_image_data, "boxes") else []
     )
 
-    if input_image_data.conf_threshold is not None:
+    # Saving Confidence Threshold
+    if input_image_data.conf_threshold != None:
         confidence_threshold = input_image_data.conf_threshold
         logger.debug(f"Confidence threshold set by user to: {confidence_threshold}")
     elif input_image_data.image_type == INBOUND_IMAGE_TYPE.TEXT_BASED:
@@ -38,32 +72,18 @@ def process_ocr(input_image_data: ImageRequestData,
         confidence_threshold = DIAGRAM_CONFIDENCE_THRESHOLD        
     else:
         confidence_threshold = TABLE_CONFIDENCE_THRESHOLD    
+    
+    # else:
+    #     confidence_threshold = TEXT_CONFIDENCE_THRESHOLD if input_image_data.image_type == INBOUND_IMAGE_TYPE.TEXT_BASED else DIAGRAM_CONFIDENCE_THRESHOLD
+    #     logger.debug(f"Using default confidence threshold: {confidence_threshold}")
 
     logger.debug("Finished image preprocessing, moving on to OCR")
-
-    #You need this to get OCR results
     image_name_to_language_extractions: List[TextWrapper] = get_text_from_images(
         source_image_to_list_of_boxes=preprocessed_data,
         language=input_image_data.src_lang,
         cthreshold=confidence_threshold
     )
-
     logger.debug("Finished OCR, moving to translation")
-
-    #Translate line-by-line or sentence-by-sentence
-    from hieroglyph.translation.smart_translate import translate_by_line_or_sentence
-
-    for textwrapper in image_name_to_language_extractions:
-        for box in textwrapper.data:
-            original_text = box["text"]
-            translated_lines = translate_by_line_or_sentence(
-                original_text,
-                source_lang=input_image_data.src_lang,
-                target_lang=input_image_data.dst_lang
-            )
-            box["translated"] = translated_lines  # Add translated content to each box
-
-    logger.debug("Finished translating OCR output")
     return (image_name_to_language_extractions, preprocessed_data) if debug else (image_name_to_language_extractions, None)
 
 
@@ -141,6 +161,5 @@ def _validate_lang(image_lang: str, lang_src: str) -> str:
 
     if converted_lang is None:
         raise HTTPException(400, f"The '{lang_src}' does not conform. Check spelling.")
-
 
     return converted_lang
