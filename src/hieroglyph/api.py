@@ -39,6 +39,9 @@ from hieroglyph.ocr import TABLE_CONFIDENCE_THRESHOLD
 
 from utils.image import ImageWrapper
 from process.boxes import global_buffer_to_export
+from fastapi import UploadFile, File
+from PIL import Image
+
 
 """
 from img2table.document import Image as img2table_Image  # no longer need since using our own table table extraction
@@ -697,5 +700,54 @@ def generate_excel(input_image_data: Inputb64):
     # test_batch_endpoint()
     return StreamingResponse(buffer, media_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', headers={"Content-Disposition": "attachment; filename=generated_excel.xlsx"})
 """
+
+
+@app.post("/bulk-pipeline")
+async def bulk_pipeline_route(files: List[UploadFile] = File(...)):
+    """
+    Accepts multiple image files via form-data and performs OCR + translation on each.
+    Returns a list of results per file.
+    """
+    results = []
+
+    for file in files:
+        try:
+            # Read bytes and open image
+            contents = await file.read()
+            image = Image.open(io.BytesIO(contents))
+
+            # Wrap image as base64 for existing pipeline
+            b64_bytes = base64.b64encode(contents).decode()
+            pipeline_input = PipelineRequestData(
+                name=file.filename,
+                b64data=b64_bytes,
+                src_lang="chinese",
+                dst_lang="english",
+                image_type=INBOUND_IMAGE_TYPE.TEXT,  # or infer from filename
+                metadata={},
+                overlay="False"
+            )
+
+            output_pages, _ = process_ocr(pipeline_input)
+            translated = translate_page_data(
+                textwrapper=output_pages[0],  # assuming single-page image
+                lang_in="chinese",
+                lang_out="english",
+                translator=translator
+            )
+
+            results.append({
+                "filename": file.filename,
+                "ocr_text": [d['text'] for d in translated['data']],
+                "translation": [d['translation'] for d in translated['data']]
+            })
+        except Exception as e:
+            logger.error(f"Error processing file {file.filename}: {e}")
+            results.append({
+                "filename": file.filename,
+                "error": str(e)
+            })
+
+    return results
 
 

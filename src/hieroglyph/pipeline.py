@@ -15,6 +15,8 @@ from hieroglyph.utils.image import ImageWrapper
 from hieroglyph.utils.text import TextWrapper
 from hieroglyph.general import internal_language_mapping, INBOUND_IMAGE_TYPE  # Defined in __init__.py
 
+
+
 logger = logging.getLogger(__name__)
 
 
@@ -60,6 +62,7 @@ def process_ocr(input_image_data: ImageRequestData,
         input_image_data=input_image_data,
         debug_mode=debug,
         boxes=input_image_data.boxes if hasattr(input_image_data, "boxes") else []
+
     )
 
     # Saving Confidence Threshold
@@ -78,10 +81,11 @@ def process_ocr(input_image_data: ImageRequestData,
     #     logger.debug(f"Using default confidence threshold: {confidence_threshold}")
 
     logger.debug("Finished image preprocessing, moving on to OCR")
+ 
     image_name_to_language_extractions: List[TextWrapper] = get_text_from_images(
-        source_image_to_list_of_boxes=preprocessed_data,
-        language=input_image_data.src_lang,
-        cthreshold=confidence_threshold
+    source_image_to_list_of_boxes=preprocessed_data,
+    language=input_image_data.src_lang,
+    cthreshold=confidence_threshold
     )
     logger.debug("Finished OCR, moving to translation")
     return (image_name_to_language_extractions, preprocessed_data) if debug else (image_name_to_language_extractions, None)

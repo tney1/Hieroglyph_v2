@@ -33,6 +33,9 @@ export default function DocumentViewer({ viewerId, allPages, setAllPages, pageNu
     const [numDocumentPages, setNumDocumentPages] = useState(1);
     const [deleteBoxFlag, setDeleteBoxFlag] = useState(false);
     const pageDivRef = useRef();
+    const [bulkImages, setBulkImages] = useState([]);
+    const [bulkResults, setBulkResults] = useState([]);
+
 
 
 
@@ -203,6 +206,36 @@ export default function DocumentViewer({ viewerId, allPages, setAllPages, pageNu
 
     }
 
+    function handleBulkUpload(e) {
+    const files = Array.from(e.target.files);
+    setBulkImages(files);
+}
+
+    async function handleBulkOCRTranslate() {
+        if (bulkImages.length === 0) {
+            alert("No files selected for bulk OCR/translation.");
+            return;
+        }
+
+        const formData = new FormData();
+        bulkImages.forEach(file => formData.append("files", file));
+
+        try {
+            const res = await fetch("/api/bulk-pipeline", {
+                method: "POST",
+                body: formData
+            });
+
+        if (!res.ok) throw new Error("Failed to process bulk OCR.");
+
+            const data = await res.json();
+            setBulkResults(data);
+        } catch (error) {
+            console.error("Bulk OCR Error:", error);
+            alert("Error processing bulk OCR/translation.");
+        }
+    }
+
     useEffect(() => {
         console.log("DocumentViewer.useeffect setting width from:", pdfWidth, "height:", pdfHeight);    
         if (selectedFile.isDocument === true) {
@@ -304,7 +337,15 @@ export default function DocumentViewer({ viewerId, allPages, setAllPages, pageNu
                                 </Button>
                             </>
                         }
-                    
+                                <Form.Group controlId="bulkFileUpload" className="mb-3">
+                                    <Form.Label>Select Multiple Files for OCR/Translation</Form.Label>
+                                    <Form.Control type="file" multiple accept="image/*,.pdf" onChange={handleBulkUpload} />
+                                </Form.Group>
+
+                                <Button variant="primary" size="sm" onClick={handleBulkOCRTranslate}>
+                                    Bulk OCR/Translate
+                                </Button>
+
                     </Col>
                     <Col lg="6">
                         <OverlayTrigger className='viewFileTag' placement='bottom' overlay={deleteButtonTooltip}>
@@ -357,6 +398,19 @@ export default function DocumentViewer({ viewerId, allPages, setAllPages, pageNu
                         </Document>
                         }
                 </Row>
+                        {bulkResults.length > 0 && (
+                            <div className="bulkResultsContainer">
+                                <h5>Bulk OCR/Translation Results</h5>
+                                 {bulkResults.map((res, idx) => (
+                                    <div key={idx} className="bulkResultBlock">
+                                        <strong>File {idx + 1}:</strong>
+                                        <p><strong>OCR:</strong> {res.ocr_text?.join(" ") || "N/A"}</p>
+                                        <p><strong>Translation:</strong> {res.translation?.join(" ") || "N/A"}</p>
+                                        <hr />
+                                    </div>
+                                ))}
+                            </div>
+                        )}
             </Col>
         </Row>
     );
